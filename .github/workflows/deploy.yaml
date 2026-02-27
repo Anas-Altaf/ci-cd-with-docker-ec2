@@ -13,11 +13,12 @@ jobs:
           - name: Deploy Via SSH
             uses: appleboy/ssh-action@v1
             with:
-              host: ${{secrets.SSH_HOST}}
-              username: ubuntu
-              key: ${{secrets.SSH_KEY}}
-              script: |
-                    sudo su -
-                    sudo cd /root/ci-cd-with-docker-ec2
-                    sudo git pull
-                    sudo docker compose up -d --build
+                host: ${{secrets.SSH_HOST}}
+                username: ubuntu
+                key: ${{secrets.SSH_KEY}}
+                script: |
+                  sudo bash -c "
+                    cd /root/ci-cd-with-docker-ec2 || exit 1
+                    git pull
+                    docker compose up -d --build
+                  "
