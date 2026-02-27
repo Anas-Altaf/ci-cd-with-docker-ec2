@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hello, from CI/CD  with AWS!' });
+    res.json({ message: 'Hello, from CI/CD  with AWS! V2' });
 });
 
 app.listen(PORT, () => {
