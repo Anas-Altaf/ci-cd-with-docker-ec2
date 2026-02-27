@@ -17,7 +17,7 @@ jobs:
               username: ubuntu
               key: ${{secrets.SSH_KEY}}
               script: |
-                    sudo -i
+                    sudo su -
                     cd /root/ci-cd-with-docker-ec2
                     git pull
                     docker compose up -d --build
