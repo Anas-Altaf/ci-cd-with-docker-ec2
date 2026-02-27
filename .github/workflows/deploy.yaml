@@ -1,0 +1,23 @@
+name: Deploy NodeJs App to AWS
+on:
+    push:
+        branches:
+            - main
+jobs:
+    deploy-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code means Pull 
+              uses: actions/checkout@v4
+
+            - name: Deploy Via SSH
+              uses: appleboy/ssh-action@1.0.3
+              with:
+                host: ${{secrets.SSH_HOST}}
+                username: ubuntu
+                key: ${{secrets.SSH_KEY}}
+                script: |
+                  sudo -i
+                  cd /root/ci-cd-with-docker-ec2
+                  git pull
+                  docker compose up -d --build
